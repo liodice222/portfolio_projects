@@ -1,0 +1,5 @@
+--top 10 highest profit--
+ SELECT name, budget, box_office, (box_office - budget) AS profit 
+ FROM Movies
+ ORDER BY profit DESC
+ LIMIT 10

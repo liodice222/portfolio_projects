@@ -1,0 +1,4 @@
+SELECT name, budget
+FROM Movies
+ORDER BY budget DESC
+LIMIT 5;

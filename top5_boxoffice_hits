@@ -1,0 +1,6 @@
+--top 5 box office hits--
+SELECT name, box_office
+ FROM Movies
+ GROUP BY name 
+ ORDER BY box_office DESC
+ LIMIT 5; 

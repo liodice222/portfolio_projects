@@ -1,0 +1,9 @@
+–view our dataset–
+SELECT * 
+FROM IMDBTop250MoviesCleanedIMDBTop250Movies
+
+–change table name–
+ALTER TABLE  IMDBTop250MoviesCleanedIMDBTop250Movies RENAME TO Movies
+
+SELECT * 
+FROM Movies

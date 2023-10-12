@@ -1,0 +1,10 @@
+ --Most popular genres--
+SELECT genre, COUNT(*) AS genre_count
+FROM (
+  SELECT TRIM(value) AS genre
+  FROM Movies
+  CROSS JOIN json_each('["' || REPLACE(genre, ',', '","') || '"]')
+)
+GROUP BY genre
+ORDER BY genre_count DESC
+LIMIT 5; 

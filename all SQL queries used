@@ -1,0 +1,73 @@
+–view dataset–
+SELECT * 
+FROM IMDBTop250MoviesCleanedIMDBTop250Movies
+
+–change table name–
+ALTER TABLE  IMDBTop250MoviesCleanedIMDBTop250Movies RENAME TO Movies
+
+SELECT * 
+FROM Movies
+
+– Update budget to USD – 
+
+–Princess Mononoke update–
+UPDATE Movies
+SET budget = REPLACE(budget, 2400000000, 23500000); 
+
+–3 Idiots Update–
+UPDATE Movies 
+SET budget = REPLACE(budget, 550000000, 6700000);
+
+–updated top 5 budgeted movies–
+SELECT name, budget
+FROM Movies
+Order by budget DESC
+LIMIT 5;
+
+
+– top 5 budgeted – 
+SELECT name, budget
+FROM Movies
+ORDER BY budget DESC
+LIMIT 5;
+
+--top 5 box office hits--
+SELECT name, box_office
+ FROM Movies
+ GROUP BY name 
+ ORDER BY box_office DESC
+ LIMIT 5; 
+
+
+
+
+
+ --Most popular genres--
+SELECT genre, COUNT(*) AS genre_count
+FROM (
+  SELECT TRIM(value) AS genre
+  FROM Movies
+  CROSS JOIN json_each('["' || REPLACE(genre, ',', '","') || '"]')
+)
+GROUP BY genre
+ORDER BY genre_count DESC
+LIMIT 5; 
+
+--top 10 highest profit--
+ SELECT name, budget, box_office, (box_office - budget) AS profit 
+ FROM Movies
+ ORDER BY profit DESC
+ LIMIT 10
+
+–Top 5 rated movies–
+SELECT name, rating
+FROM Movies
+ORDER BY rating DESC
+LIMIT 5; 
+
+ --top 10 directors--
+ SELECT directors, COUNT(*) AS Number_of_movies
+ FROM Movies
+ GROUP BY directors
+ ORDER BY COUNT(*) DESC
+ Limit 10; 
